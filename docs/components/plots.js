@@ -6,13 +6,14 @@ export function plot_value(value, {width} = {}) {
     return Plot.plot({
       width,
       title: "Total portfolio value",
-      x: {type: "utc", ticks: "day", label: "Time [days]"},
+      x: {type: "utc", ticks: "week", label: "Time [days]"},
       y: {grid: true, inset: 10, label: "Value [euros]"},
       marks: [
         Plot.lineY(value, {
           x: "time",
           y: "value",
           stroke: "green",
+          tip: true
           })
         ]
     });

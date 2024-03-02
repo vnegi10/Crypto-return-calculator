@@ -3,7 +3,7 @@ import sys
 from data import get_hist_market
 from helpers import get_prices_dict, create_value_dict
 
-duration = "15" # days
+duration = "120" # days
 target_currency = "eur"
 
 # Define portfolio
