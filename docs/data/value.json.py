@@ -1,14 +1,9 @@
 import json
 import sys
+from portfolio import duration, target_currency, port_amount, port_curr
 from data import get_hist_market
 from helpers import get_prices_dict, create_value_dict
 
-duration = "120" # days
-target_currency = "eur"
-
-# Define portfolio
-port_curr = ["bitcoin", "ethereum"]
-port_amount = [0.25, 1.5]
 value_dict = None
 
 for (curr, amount) in zip(port_curr, port_amount):
