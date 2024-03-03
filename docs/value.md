@@ -3,7 +3,7 @@ theme: dashboard
 toc: false
 ---
 
-# Portfolio total value
+# Total value
 
 ```js
 import {plot_value, plot_breakdown} from "./components/plots.js";
@@ -18,7 +18,7 @@ const breakdown = FileAttachment("./data/value.json").json();
     <div class="card">${resize((width) => plot_value(breakdown, {width}))} </div>
 </div>
 
-# Portfolio breakdown
+# Breakdown
 
 ```js
 // Convert x-axis to Date object so that we make a bar plot later
