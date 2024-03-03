@@ -12,12 +12,24 @@ def get_prices_dict(prices):
         
     return prices_dict
 
-def create_value_dict(curr_dict):
+def initialize_dict(port_curr):
 
-    value_dict = []
+    # Initialize dict with keys for all currencies
+    port_value = [0.0 for i in range(len(port_curr))]
+    breakdown = {port_curr[i] : port_value[i] for i in range(len(port_curr))}
 
+    # Add key to store total value
+    breakdown['value'] = 0.0
+
+    return breakdown
+
+def create_breakdown_dict(curr_dict, port_curr):
+
+    # Create a list of dicts
+    breakdown_dict = []
     for i in range(len(curr_dict)):
-        value_dict.append({'time' : curr_dict[i]["time"],
-                           'value' : 0.0})
+        breakdown = initialize_dict(port_curr)
+        breakdown['time'] = curr_dict[i]["time"]
+        breakdown_dict.append(breakdown)
 
-    return value_dict
+    return breakdown_dict

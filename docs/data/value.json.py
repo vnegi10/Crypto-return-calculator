@@ -2,19 +2,20 @@ import json
 import sys
 from portfolio import duration, target_currency, port_amount, port_curr
 from data import get_hist_market
-from helpers import get_prices_dict, create_value_dict
+from helpers import get_prices_dict, create_breakdown_dict
 
-value_dict = None
+breakdown_dict = None
 
 for (curr, amount) in zip(port_curr, port_amount):
     curr_hist = get_hist_market(curr, target_currency, duration)
     curr_dict = get_prices_dict(curr_hist["prices"])
 
-    if value_dict is None:
-        value_dict = create_value_dict(curr_dict)
+    if breakdown_dict is None:
+        breakdown_dict = create_breakdown_dict(curr_dict, port_curr)
 
     for i in range(len(curr_dict)):
         daily_value = curr_dict[i]["price"] * amount
-        value_dict[i]["value"] += daily_value
+        breakdown_dict[i]["value"] += daily_value
+        breakdown_dict[i][f"{curr}"] = daily_value
 
-json.dump(value_dict, sys.stdout)
+json.dump(breakdown_dict, sys.stdout)
