@@ -3,7 +3,7 @@ theme: dashboard
 toc: false
 ---
 
-# Total portfolio value
+# Portfolio total value
 
 ```js
 import {plot_value} from "./components/plots.js";
