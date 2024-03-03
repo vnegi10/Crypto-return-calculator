@@ -7,7 +7,7 @@ export function plot_value(breakdown, {width} = {}) {
       width,
       title: "Total portfolio value",
       x: {type: "utc", ticks: "week", label: "Time [days]"},
-      y: {grid: true, inset: 10, label: "Value [euros]"},
+      y: {grid: true, inset: 10, label: "Value [euros]", domain: [0, 11000]},
       marks: [
         Plot.lineY(breakdown, {
           x: "time",
@@ -25,7 +25,7 @@ export function plot_breakdown(stackArray, {width} = {}) {
       width,
       title: "Portfolio breakdown",
       x: {label: "Time [days]"},
-      y: {grid: true, label: "Value [euros]"},
+      y: {grid: true, label: "Value [euros]", domain: [0, 11000]},
       color: {legend: true},
       marks: [
         Plot.rectY(stackArray, {
