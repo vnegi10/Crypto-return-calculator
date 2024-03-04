@@ -18,9 +18,23 @@ export function plot_value(breakdown, {width} = {}) {
           x: "time",
           y: "value",
           stroke: "green",
-          tip: true
+          tip: false
           }),
-        Plot.ruleY([0])
+        Plot.ruleY([0]),
+        Plot.ruleX(breakdown, Plot.pointerX({x: "time",
+                                             py: "value",
+                                             stroke: "red"})),
+        Plot.dot(breakdown, Plot.pointerX({x: "time",
+                                           y: "value",
+                                           stroke: "red"})),
+        Plot.text(breakdown, Plot.pointerX({px: "time",
+                                            py: "value",
+                                            dx: 100,
+                                            dy: -18,
+                                            frameAnchor: "top-left",
+                                            fontVariant: "tabular-nums",
+                                            text: (d) => [`Date ${d.time}`,
+                                                          `Value ${d.value.toFixed(2)}`].join("    ")}))
         ]
     });
 }
