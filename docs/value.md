@@ -49,6 +49,13 @@ for (const obj of breakdown_dates) {
     time: obj.time
   };
   stackArray.push(newObj2);
+
+  const newObj3 = {
+    name: "LINK",
+    value: obj.chainlink,
+    time: obj.time
+  };
+  stackArray.push(newObj3);
 }
 ```
 
