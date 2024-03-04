@@ -9,12 +9,18 @@ export function plot_value(breakdown, {width} = {}) {
       x: {type: "utc", ticks: "week", label: "Time [days]"},
       y: {grid: true, inset: 10, label: "Value [euros]", domain: [0, 20000]},
       marks: [
+        Plot.areaY(breakdown, {
+          x: "time",
+          y: "value",
+          fillOpacity: 0.2
+          }),
         Plot.lineY(breakdown, {
           x: "time",
           y: "value",
           stroke: "green",
           tip: true
-          })
+          }),
+        Plot.ruleY([0])
         ]
     });
 }
