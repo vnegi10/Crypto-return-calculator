@@ -25,7 +25,7 @@ export function plot_value(breakdown, {width} = {}) {
     });
 }
 
-export function plot_breakdown(stackArray, {width} = {}) {
+export function plot_breakdown_bar(stackArray, {width} = {}) {
 
     return Plot.plot({
       width,
