@@ -6,7 +6,7 @@ toc: false
 # Total value
 
 ```js
-import {plot_value, plot_breakdown_bar} from "./components/plots.js";
+import {plot_value, plot_breakdown_bar, plot_breakdown_area} from "./components/plots.js";
 ```
 
 ```js
@@ -61,4 +61,8 @@ for (const obj of breakdown_dates) {
 
 <div class="grid grid-cols-1">
     <div class="card">${resize((width) => plot_breakdown_bar(stackArray, {width}))} </div>
+</div>
+
+<div class="grid grid-cols-1">
+    <div class="card">${resize((width) => plot_breakdown_area(stackArray, {width}))} </div>
 </div>
