@@ -1,13 +1,15 @@
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
+const domain_max = 30000
+
 export function plot_value(breakdown, {width} = {}) {
 
     return Plot.plot({
       width,
       //title: "Total portfolio value",
       x: {type: "utc", ticks: "week", label: "Time [days]"},
-      y: {grid: true, inset: 10, label: "Value [euros]", domain: [0, 20000]},
+      y: {grid: true, inset: 10, label: "Value [euros]", domain: [0, domain_max]},
       marks: [
         Plot.areaY(breakdown, {
           x: "time",
@@ -45,7 +47,7 @@ export function plot_breakdown_bar(stackArray, {width} = {}) {
       width,
       //title: "Portfolio breakdown",
       x: {label: "Time [days]"},
-      y: {grid: true, label: "Value [euros]", domain: [0, 20000]},
+      y: {grid: true, label: "Value [euros]", domain: [0, domain_max]},
       color: {legend: true},
       marks: [
         Plot.rectY(stackArray, {
@@ -65,7 +67,7 @@ export function plot_breakdown_area(stackArray, {width} = {}) {
     width,
     //title: "Portfolio breakdown",
     x: {label: "Time [days]"},
-    y: {grid: true, label: "Value [euros]", domain: [0, 20000]},
+    y: {grid: true, label: "Value [euros]", domain: [0, domain_max]},
     color: {legend: true},
     marks: [
       Plot.areaY(stackArray, {

@@ -14,11 +14,15 @@ function convertDates(breakdown) {
 
 const tickers = ["BTC",
                  "ETH",
-                 "LINK"];
+                 "LINK",
+                 "DASH",
+                 "LTC"];
 
 const names = ["bitcoin",
                 "ethereum",
-                "chainlink"];
+                "chainlink",
+                "dash",
+                "litecoin"];
 
 export function createStack(breakdown) {
 
