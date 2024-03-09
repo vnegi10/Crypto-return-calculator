@@ -93,7 +93,7 @@ export function plot_breakdown_change(stackArray, date, {width} = {}) {
     y: {
         //type: "log",
         grid: true,
-        label: "Change in price (%)",
+        label: "Change in value (%)",
         tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d")),
         //domain: [0, 100]
     },
@@ -109,7 +109,8 @@ export function plot_breakdown_change(stackArray, date, {width} = {}) {
         y: "value",
         interval: "day",
         stroke: "name",
-        tip: true
+        //marker: true
+        //tip: true
         })),
       ]
     });
