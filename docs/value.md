@@ -7,6 +7,7 @@ toc: false
 
 ```js
 import {plot_value, plot_breakdown_bar, plot_breakdown_area} from "./components/plots.js";
+import {createStack} from "./components/helpers.js";
 ```
 
 ```js
@@ -20,49 +21,10 @@ const breakdown = FileAttachment("./data/value.json").json();
 
 # Breakdown
 
-```js
-// Convert x-axis to Date object so that we make a bar plot later
-var breakdown_dates
-breakdown_dates = breakdown.map(({time, ...rest}) => {
-  return {
-    time: new Date(time),
-    ...rest
-  };
-})
-```
-
-```js
-// Perform stacking to get a new column with currency name
-const stackArray = [];
-
-for (const obj of breakdown_dates) {
-  const newObj1 = {
-    name: "BTC",
-    value: obj.bitcoin,
-    time: obj.time
-  };
-  stackArray.push(newObj1);
-
-  const newObj2 = {
-    name: "ETH",
-    value: obj.ethereum,
-    time: obj.time
-  };
-  stackArray.push(newObj2);
-
-  const newObj3 = {
-    name: "LINK",
-    value: obj.chainlink,
-    time: obj.time
-  };
-  stackArray.push(newObj3);
-}
-```
-
 <div class="grid grid-cols-1">
-    <div class="card">${resize((width) => plot_breakdown_bar(stackArray, {width}))} </div>
+    <div class="card">${resize((width) => plot_breakdown_bar(createStack(breakdown), {width}))} </div>
 </div>
 
 <div class="grid grid-cols-1">
-    <div class="card">${resize((width) => plot_breakdown_area(stackArray, {width}))} </div>
+    <div class="card">${resize((width) => plot_breakdown_area(createStack(breakdown), {width}))} </div>
 </div>
