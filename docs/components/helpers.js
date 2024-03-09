@@ -64,3 +64,17 @@ export function createClubbedStack(breakdown) {
     return clubbedArray
 
 }
+
+export function getPertChange(breakdown, num_days) {
+
+    const change = (breakdown[breakdown.length - 1].value -
+                    breakdown[breakdown.length - 1 - num_days].value)
+                    / breakdown[breakdown.length - 1- num_days].value
+    
+    // Change %
+    const pert_change = change * 100;
+
+    // Round off to first digit after decimal
+    return Math.round(pert_change * 10) / 10
+
+}
