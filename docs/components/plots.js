@@ -93,7 +93,7 @@ export function plot_breakdown_change(stackArray, date, {width} = {}) {
     y: {
         //type: "log",
         grid: true,
-        label: "Change in value (%)",
+        label: "Change in individual value (%)",
         tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d")),
         //domain: [0, 100]
     },
@@ -109,6 +109,40 @@ export function plot_breakdown_change(stackArray, date, {width} = {}) {
         y: "value",
         interval: "day",
         stroke: "name",
+        //marker: true
+        //tip: true
+        })),
+      ]
+    });
+}
+
+export function plot_value_change(breakdown, date, {width} = {}) {
+
+    const bisector = d3.bisector((i) => breakdown[i].time);
+    const basis = (I, Y) => Y[I[bisector.center(I, date)]];
+
+    return Plot.plot({
+
+    style: "overflow: visible;",
+    y: {
+        //type: "log",
+        grid: true,
+        label: "Change in total value (%)",
+        tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d")),
+        //domain: [0, 100]
+    },
+    width,
+    //title: "",
+    x: {label: "Time [days]"},
+    color: {legend: true},
+    marks: [
+      Plot.ruleY([1]),
+      Plot.ruleX([date]),
+      Plot.lineY(breakdown, Plot.normalizeY(basis, {
+        x: "time",
+        y: "value",
+        interval: "day",
+        //stroke: "name",
         //marker: true
         //tip: true
         })),

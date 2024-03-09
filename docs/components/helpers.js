@@ -1,4 +1,4 @@
-function convertDates(breakdown) {
+export function convertDates(breakdown) {
 
     var breakdown_dates;
     breakdown_dates = breakdown.map(({time, ...rest}) => {

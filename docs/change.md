@@ -6,8 +6,8 @@ toc: false
 # Relative performance
 
 ```js
-import {plot_breakdown_change} from "./components/plots.js";
-import {createClubbedStack} from "./components/helpers.js";
+import {plot_breakdown_change, plot_value_change} from "./components/plots.js";
+import {createClubbedStack, convertDates} from "./components/helpers.js";
 import * as Inputs from "npm:@observablehq/inputs";
 ```
 
@@ -27,6 +27,10 @@ const date = view(
         max: clubbedStack[clubbedStack.length - 1].time
         }));
 ```
+
+<div class="grid grid-cols-1">
+    <div class="card">${resize((width) => plot_value_change(convertDates(breakdown), date, {width}))} </div>
+</div>
 
 <div class="grid grid-cols-1">
     <div class="card">${resize((width) => plot_breakdown_change(clubbedStack, date, {width}))} </div>
