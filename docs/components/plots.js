@@ -80,9 +80,7 @@ export function plot_breakdown_area(stackArray, {width} = {}) {
   });
 }
 
-export function plot_breakdown_change(stackArray, {width} = {}) {
-
-    const date = stackArray[0].time
+export function plot_breakdown_change(stackArray, date, {width} = {}) {
 
     const bisector = d3.bisector((i) => stackArray[i].time);
     const basis = (I, Y) => Y[I[bisector.center(I, date)]];
