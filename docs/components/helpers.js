@@ -19,10 +19,10 @@ const tickers = ["BTC",
                  "LTC"];
 
 const names = ["bitcoin",
-                "ethereum",
-                "chainlink",
-                "dash",
-                "litecoin"];
+               "ethereum",
+               "chainlink",
+               "dash",
+               "litecoin"];
 
 export function createStack(breakdown) {
 
@@ -76,5 +76,45 @@ export function getPertChange(breakdown, num_days) {
 
     // Round off to first digit after decimal
     return Math.round(pert_change * 10) / 10
+
+}
+
+export function getTopPerformer(breakdown, num_days) {
+
+    const changeArray = []
+
+    for (let i = 0; i < names.length; i++) {
+        const changeObj = {
+            name: names[i],
+            change: (breakdown[breakdown.length - 1][names[i]] -
+                     breakdown[breakdown.length - 1 - num_days][names[i]])
+                     / breakdown[breakdown.length - 1- num_days][names[i]]
+        }
+        changeArray.push(changeObj)
+    }
+
+    // Find maximum value and its corresponding index in changeArray
+    let maxValue = -Infinity;
+    let maxIndex = -1;
+
+    for (let i = 0; i < changeArray.length; i++) {
+      if (changeArray[i].change > maxValue) {
+        maxValue = changeArray[i].change;
+        maxIndex = i;
+      }
+    }
+
+    // Change %
+    const maxChange = maxValue * 100;
+
+    // Round off to first digit after decimal
+    const roundMaxChange = Math.round(maxChange * 10) / 10;
+
+    const resultObj = {
+        maxChange: roundMaxChange,
+        maxName: tickers[maxIndex]
+    }
+
+    return resultObj
 
 }

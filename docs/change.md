@@ -7,13 +7,31 @@ toc: false
 
 ```js
 import {plotBreakdownChange, plotValueChange} from "./components/plots.js";
-import {createClubbedStack, convertDates} from "./components/helpers.js";
+import {createClubbedStack, convertDates, getTopPerformer} from "./components/helpers.js";
 import * as Inputs from "npm:@observablehq/inputs";
 ```
 
 ```js
 const breakdown = FileAttachment("./data/value.json").json();
 ```
+
+```js
+const weeklyObj = getTopPerformer(breakdown, 7);
+const monthlyObj = getTopPerformer(breakdown, 30);
+```
+
+<!-- Cards with big numbers -->
+
+<div class="grid grid-cols-4">
+  <div class="card">
+    <h2> Last 7 days top performer [ticker, %]</h2>
+    <span class="big">${weeklyObj.maxName}, ${weeklyObj.maxChange}</span>
+  </div>
+  <div class="card">
+    <h2> Last 30 days top performer [ticker, %]</h2>
+    <span class="big">${monthlyObj.maxName}, ${monthlyObj.maxChange}</span>
+  </div>
+</div>
 
 ```js
 const clubbedStack = createClubbedStack(breakdown)
