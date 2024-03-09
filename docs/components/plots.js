@@ -3,7 +3,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 const domain_max = 30000
 
-export function plot_value(breakdown, {width} = {}) {
+export function plotValue(breakdown, {width} = {}) {
 
     return Plot.plot({
       width,
@@ -41,7 +41,7 @@ export function plot_value(breakdown, {width} = {}) {
     });
 }
 
-export function plot_breakdown_bar(stackArray, {width} = {}) {
+export function plotBreakdownBar(stackArray, {width} = {}) {
 
     return Plot.plot({
       width,
@@ -61,7 +61,7 @@ export function plot_breakdown_bar(stackArray, {width} = {}) {
     });
 }
 
-export function plot_breakdown_area(stackArray, {width} = {}) {
+export function plotBreakdownArea(stackArray, {width} = {}) {
 
   return Plot.plot({
     width,
@@ -82,7 +82,7 @@ export function plot_breakdown_area(stackArray, {width} = {}) {
   });
 }
 
-export function plot_breakdown_change(stackArray, date, {width} = {}) {
+export function plotBreakdownChange(stackArray, date, {width} = {}) {
 
     const bisector = d3.bisector((i) => stackArray[i].time);
     const basis = (I, Y) => Y[I[bisector.center(I, date)]];
@@ -116,7 +116,7 @@ export function plot_breakdown_change(stackArray, date, {width} = {}) {
     });
 }
 
-export function plot_value_change(breakdown, date, {width} = {}) {
+export function plotValueChange(breakdown, date, {width} = {}) {
 
     const bisector = d3.bisector((i) => breakdown[i].time);
     const basis = (I, Y) => Y[I[bisector.center(I, date)]];
