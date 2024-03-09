@@ -18,11 +18,11 @@ const breakdown = FileAttachment("./data/value.json").json();
 
 <div class="grid grid-cols-4">
   <div class="card">
-    <h2>Weekly change %</h2>
+    <h2>Last 7 days change [%]</h2>
     <span class="big">${getPertChange(breakdown, 7)}</span>
   </div>
   <div class="card">
-    <h2>Monthly change %</h2>
+    <h2>Last 30 days change [%]</h2>
     <span class="big">${getPertChange(breakdown, 30)}</span>
   </div>
 </div>
