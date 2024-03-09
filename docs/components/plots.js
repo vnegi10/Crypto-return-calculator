@@ -79,3 +79,24 @@ export function plot_breakdown_area(stackArray, {width} = {}) {
       ]
   });
 }
+
+export function plot_breakdown_change(stackArray, {width} = {}) {
+
+    return Plot.plot({
+      width,
+      title: "Portfolio breakdown",
+      x: {label: "Time [days]"},
+      y: {grid: true, label: "Value [euros]", domain: [0, 20000]},
+      color: {legend: true},
+      marks: [
+        Plot.lineY(stackArray, {
+          x: "time",
+          y: "value",
+          interval: "day",
+          stroke: "name",
+          tip: true
+          }),
+        Plot.ruleY([0])
+        ]
+    });
+}
