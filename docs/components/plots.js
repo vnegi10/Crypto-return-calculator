@@ -5,7 +5,7 @@ export function plot_value(breakdown, {width} = {}) {
 
     return Plot.plot({
       width,
-      title: "Total portfolio value",
+      //title: "Total portfolio value",
       x: {type: "utc", ticks: "week", label: "Time [days]"},
       y: {grid: true, inset: 10, label: "Value [euros]", domain: [0, 20000]},
       marks: [
@@ -43,7 +43,7 @@ export function plot_breakdown_bar(stackArray, {width} = {}) {
 
     return Plot.plot({
       width,
-      title: "Portfolio breakdown",
+      //title: "Portfolio breakdown",
       x: {label: "Time [days]"},
       y: {grid: true, label: "Value [euros]", domain: [0, 20000]},
       color: {legend: true},
@@ -63,7 +63,7 @@ export function plot_breakdown_area(stackArray, {width} = {}) {
 
   return Plot.plot({
     width,
-    title: "Portfolio breakdown",
+    //title: "Portfolio breakdown",
     x: {label: "Time [days]"},
     y: {grid: true, label: "Value [euros]", domain: [0, 20000]},
     color: {legend: true},
