@@ -82,21 +82,35 @@ export function plot_breakdown_area(stackArray, {width} = {}) {
 
 export function plot_breakdown_change(stackArray, {width} = {}) {
 
+    const date = stackArray[0].time
+
+    const bisector = d3.bisector((i) => stackArray[i].time);
+    const basis = (I, Y) => Y[I[bisector.center(I, date)]];
+
     return Plot.plot({
-      width,
-      title: "Portfolio breakdown",
-      x: {label: "Time [days]"},
-      y: {grid: true, label: "Value [euros]", domain: [0, 20000]},
-      color: {legend: true},
-      marks: [
-        Plot.lineY(stackArray, {
-          x: "time",
-          y: "value",
-          interval: "day",
-          stroke: "name",
-          tip: true
-          }),
-        Plot.ruleY([0])
-        ]
+
+    style: "overflow: visible;",
+    y: {
+        //type: "log",
+        grid: true,
+        label: "Change in price (%)",
+        tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d")),
+        //domain: [0, 100]
+    },
+    width,
+    //title: "",
+    x: {label: "Time [days]"},
+    color: {legend: true},
+    marks: [
+      Plot.ruleY([1]),
+      Plot.ruleX([date]),
+      Plot.lineY(stackArray, Plot.normalizeY(basis, {
+        x: "time",
+        y: "value",
+        interval: "day",
+        stroke: "name",
+        tip: true
+        })),
+      ]
     });
 }
