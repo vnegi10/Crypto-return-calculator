@@ -15,31 +15,27 @@ function convertDates(breakdown) {
 export function createStack(breakdown) {
 
     const stackArray = [];
+    const tickers = ["BTC",
+                     "ETH",
+                     "LINK"];
+
+    const names = ["bitcoin",
+                   "ethereum",
+                   "chainlink"];
     
     for (const obj of convertDates(breakdown)) {
-      const newObj1 = {
-        name: "BTC",
-        value: obj.bitcoin,
-        time: obj.time
-      };
-      stackArray.push(newObj1);
-    
-      const newObj2 = {
-        name: "ETH",
-        value: obj.ethereum,
-        time: obj.time
-      };
-      stackArray.push(newObj2);
-    
-      const newObj3 = {
-        name: "LINK",
-        value: obj.chainlink,
-        time: obj.time
-      };
-      stackArray.push(newObj3);
-      }
 
-      return stackArray
+        for (let i = 0; i < tickers.length; i++) {
+            const newObj = {
+                name: tickers[i],
+                value: obj[names[i]],
+                time: obj.time
+              };
+              stackArray.push(newObj);
+        }
+    }
+
+    return stackArray
 
 }
 
